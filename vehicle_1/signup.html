@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="Account.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <form>
+            <div class="input-group">
+                <input type="text" name="name" id="name" placeholder=" Full Name" required> <br>
+                <span class="icon">&#128100;</span>
+            </div>
+            
+            <div class="input-group">
+                <input type="number"name="mobile" id="mobile" placeholder=" Mobile Number" required> <br>
+                <span class="icon">&#128222;</span>
+            </div>
+            <div class="input-group">
+                <input type="date"name="dob" id="dob" placeholder=" Date Of Birth" required> <br>
+                <span class="icon">&#128198;</span>
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" id="email" placeholder="Email Address" required> <br>
+                <span class="icon">&#128233;</span>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder="Password" required> <br>
+                <span class="icon">&#128272;</span>
+            </div>
+           
+            <p>By continuing you agree to <a href="Account.html">Terms of Use</a> and <a href="Account.html">Privacy Policy</a>.</p>
+            <button type="button" onclick="onSubmitBasic()">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="Account.html">Log in</a></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <script>
+        var data = {};
+        function onSubmitBasic() {
+            data['name'] = $("#name").val();      
+            data['mobile'] = $("#mobile").val();
+            data['dob'] = $("#dob").val();
+            data['email'] = $("#email").val();
+            data['password'] = $("#password").val();
+
+            $.ajax({
+                url: 'signup.php',
+                type: 'post',
+                data: data,
+                success: function(response) {
+                    if (response == 1) {
+                 alert('Details Submitted');
+                 window.location.href = "personal_details.html";
+                    } 
+                    else if(response == '0') {
+                        alert('Enter All Credentials !');
+                    }
+                }
+            })
+        }
+
+    </script>
+    
+</body>
+
+</html>
